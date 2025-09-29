@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Hostels in Kenya — Find & Book</title>
+  <meta name="description" content="Student hostels and affordable accommodation options near Kenyan campuses. Photos, prices, amenities and contact details." />
+  <style>
+    :root{--accent:#0b7285;--muted:#6b7280;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--font, Inter, Arial);color:#111;background:#f7fafc}
+    .wrap{max-width:1100px;margin:24px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between}
+    header h1{margin:0;font-size:1.4rem;color:var(--accent)}
+    nav a{margin-left:12px;text-decoration:none;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:18px}
+    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    .search{display:flex;gap:8px}
+    input[type=text]{flex:1;padding:10px;border:1px solid #e6eef2;border-radius:8px}
+    button{background:var(--accent);color:white;border:0;padding:10px 12px;border-radius:8px;cursor:pointer}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px;cursor:pointer}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;border-bottom:1px solid #edf2f7;text-align:left}
+    th{background:#f1f5f9}
+    .video{margin-top:12px}
+    .amenities{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .amenities span{background:#eef8fb;padding:6px 8px;border-radius:8px;font-size:0.85rem}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.9rem}
+    @media(max-width:880px){.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.gallery img{height:120px}}
+    @media(max-width:520px){.gallery{grid-template-columns:1fr}}
+    .orderlist{margin-top:12px}
+    .contact{display:flex;flex-direction:column;gap:8px}
+    .btn-light{background:#e6f7fa;border:1px solid #cfeef4;color:var(--accent)}
+    .badge{display:inline-block;padding:4px 8px;background:#eef2ff;border-radius:999px;font-size:0.8rem;color:#3730a3}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Student Hostels — Kenya</h1>
+      <nav>
+        <a href="#hostels">Hostels</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#video">Video</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <h2>Find hostels near your campus</h2>
+        <p style="color:var(--muted);margin-top:6px">Search by campus, town or price range.</p>
+        <div style="margin-top:12px" class="search">
+          <input id="q" type="text" placeholder="e.g., Nairobi, Kenyatta University, <Ksh>10,000" />
+          <button onclick="filterTable()">Search</button>
+        </div>
+
+        <div id="hostels" style="margin-top:14px">
+          <h3>Available Hostels</h3>
+          <table id="hostelTable" aria-label="Hostels table">
+            <thead>
+              <tr><th>Name</th><th>Location</th><th>Price / month (KSh)</th><th>Distance to campus</th><th>Amenities</th></tr>
+            </thead>
+            <tbody>
+              <!-- Sample data: replace or extend with real hostels -->
+              <tr>
+                <td><strong>Bahati Student Lodge</strong><div class="badge">Female-only</div></td>
+                <td>Nairobi — Gigiri</td>
+                <td>9,500</td>
+                <td>1.8 km</td>
+                <td>Wi-Fi, Laundry, Meals</td>
+              </tr>
+              <tr>
+                <td><strong>Ruiru Campus Hostel</strong></td>
+                <td>Ruiru — near Kenyatta Univ.</td>
+                <td>7,200</td>
+                <td>800 m</td>
+                <td>Secure, Study rooms</td>
+              </tr>
+              <tr>
+                <td><strong>Cozy Beds Moi</strong></td>
+                <td>Eldoret — near UoE</td>
+                <td>5,500</td>
+                <td>2.4 km</td>
+                <td>Electricity backup, Water</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Ordered list: steps to book -->
+          <div class="orderlist card">
+            <h4>How to book (ordered steps)</h4>
+            <ol>
+              <li>Search hostels near your campus using the search box.</li>
+              <li>Check the hostel details and photos in the gallery below.</li>
+              <li>Contact the landlord or use the contact form to request a viewing.</li>
+              <li>Reserve by paying a deposit (agree terms with landlord).</li>
+              <li>Move in on the agreed date and complete the balance of rent.</li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3>Quick filters</h3>
+        <p style="color:var(--muted)">Click a filter to show matching hostels in the table</p>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="applyFilter('female')" class="btn-light">Female-only</button>
+          <button onclick="applyFilter('near')" class="btn-light">Near campus</button>
+          <button onclick="applyFilter('cheap')" class="btn-light">Under 7,000 KSh</button>
+          <button onclick="resetFilters()" class="btn-light">Reset</button>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4>Contact landlord</h4>
+          <form id="contact" class="contact" onsubmit="event.preventDefault();alert('Message sent (demo)')">
+            <input type="text" placeholder="Your name" required />
+            <input type="text" placeholder="Phone or email" required />
+            <textarea placeholder="Message / preferred hostel" rows="3"></textarea>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
+      </aside>
+    </section>
+
+    <section id="gallery" class="card">
+      <h3>Photo Gallery</h3>
+      <p style="color:var(--muted)">Click an image to open full-size.</p>
+      <div class="gallery" id="galleryGrid">
+        <!-- Using Unsplash source to get Kenya/hostel images. Replace with your own images if you have them. -->
+        <img alt="Hostel 1" data-full="https://source.unsplash.com/1200x900/?kenya,hostel,student" src="https://source.unsplash.com/600x400/?kenya,hostel,student" onclick="openImage(this)" />
+        <img alt="Hostel 2" data-full="https://source.unsplash.com/1200x900/?kenya,accommodation" src="https://source.unsplash.com/600x400/?kenya,accommodation" onclick="openImage(this)" />
+        <img alt="Hostel 3" data-full="https://source.unsplash.com/1200x900/?kenya,dorm" src="https://source.unsplash.com/600x400/?kenya,dorm" onclick="openImage(this)" />
+        <img alt="Hostel 4" data-full="https://source.unsplash.com/1200x900/?nairobi,hostel" src="https://source.unsplash.com/600x400/?nairobi,hostel" onclick="openImage(this)" />
+        <img alt="Hostel 5" data-full="https://source.unsplash.com/1200x900/?campus,hostel" src="https://source.unsplash.com/600x400/?campus,hostel" onclick="openImage(this)" />
+        <img alt="Hostel 6" data-full="https://source.unsplash.com/1200x900/?students,hostel" src="https://source.unsplash.com/600x400/?students,hostel" onclick="openImage(this)" />
+      </div>
+    </section>
+
+    <section id="video" class="card video">
+      <h3>Video: Tips for choosing a student hostel</h3>
+      <p style="color:var(--muted)">Embedded YouTube — replace <code>VIDEO_ID</code> with the real ID to show your chosen video.</p>
+      <div style="position:relative;padding-top:56.25%">
+        <!--https://www.youtube.com/watch?v=t40vxUf1Z0A -->
+        <iframe width="100%" height="100%" style="position:absolute;left:0;top:0;border:0" src="https://www.youtube.com/watch?v=t40vxUf1Z0A" title="Hostel tips video" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>More details & tips</h3>
+      <ul>
+        <li><strong>Safety first:</strong> ask about neighbors, lighting and security at night.</li>
+        <li><strong>Utilities:</strong> check whether water and electricity are included or extra.</li>
+        <li><strong>Study environment:</strong> ask if there are quiet hours and study rooms available.</li>
+        <li><strong>Transport:</strong> proximity to matatu stages or campus shuttles can save time and cash.</li>
+        <li><strong>Documentation:</strong> always get a written receipt and a simple tenancy agreement when paying deposit.</li>
+      </ul>
+
+      <h4>Quick comparison table</h4>
+      <table>
+        <thead><tr><th>Feature</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Price</td><td>Biggest ongoing cost — compare monthly, not just rent per bed.</td></tr>
+          <tr><td>Distance to campus</td><td>Saves commuting time and transport costs.</td></tr>
+          <tr><td>Security</td><td>Look for gated compounds, guards and CCTV.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <small>Built with ❤️ — replace sample data with real hostels and landlords' contacts before publishing.</small>
+    </footer>
+  </div>
+
+  <!-- Image lightbox + table filter script -->
+  <script>
+    function openImage(img){
+      const src = img.getAttribute('data-full') || img.src;
+      const w = window.open('','imgview','width=900,height=700');
+      w.document.write('<html><head><title>Photo</title></head><body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center"><img src="'+src+'" style="max-width:100%;max-height:100%;"/></body></html>');
+    }
+
+    function filterTable(){
+      const q = document.getElementById('q').value.toLowerCase().trim();
+      const rows = document.querySelectorAll('#hostelTable tbody tr');
+      rows.forEach(r => {
+        r.style.display = (r.innerText.toLowerCase().includes(q)) ? '' : 'none';
+      });
+    }
+
+    function applyFilter(tag){
+      const rows = document.querySelectorAll('#hostelTable tbody tr');
+      if(tag === 'female'){
+        rows.forEach(r => { r.style.display = r.innerText.toLowerCase().includes('female') ? '' : 'none'; });
+      } else if(tag === 'near'){
+        rows.forEach(r => { r.style.display = /km|m/.test(r.cells[3].innerText) && parseFloat(r.cells[3].innerText) <= 1.5 ? '' : 'none'; });
+      } else if(tag === 'cheap'){
+        rows.forEach(r => { r.style.display = parseInt(r.cells[2].innerText.replace(/[^0-9]/g,'')) <= 7000 ? '' : 'none'; });
+      }
+    }
+    function resetFilters(){ document.querySelectorAll('#hostelTable tbody tr').forEach(r=>r.style.display=''); document.getElementById('q').value = '' }
+  </script>
+</body>
+</html>
